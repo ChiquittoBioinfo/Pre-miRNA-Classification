@@ -25,6 +25,7 @@ conda create -n miRNAClassification python=3.10.11 -y
 conda install -n miRNAClassification -c anaconda -y numpy
 conda install -n miRNAClassification -c conda-forge -y keras
 conda install -n miRNAClassification -c anaconda -y tensorflow
+conda install -n miRNAClassification -c conda-forge -y scikit-learn
 ```
 
 Install `keras-gpu` if you have a GPU.
@@ -32,6 +33,14 @@ Install `keras-gpu` if you have a GPU.
 ```bash
 conda install -n miRNAClassification -c anaconda keras-gpu
 conda install -n miRNAClassification -c anaconda -y tensorflow-gpu
+```
+
+## Create a model
+
+```bash
+conda activate miRNAClassification
+
+python model_chiquitto.py --canonical canonical.csv --mirtrons mirtrons.csv --modelpath outputpath
 ```
 
 ## Running
@@ -51,7 +60,7 @@ python classifier.py
 To run the CSV classifier version
 
 ```bash
-python classifierCsv.py --csv data/generated01.csv --output data/results01.csv
+python classifierCsv.py --csv data/generated01.csv --output data/results01.csv --modelpath original_model
 ```
 
 ## Removing the conda env
