@@ -108,10 +108,10 @@ def get_model_json():
     return loaded_model
 
 def usage():
-    print("USAGE: python model_chiquitto.py --canonical miRBase_set.csv --mirtrons putative_mirtrons_set.csv --modelpath model")
+    print("USAGE: python model_chiquitto.py --neg miRBase_set.csv --pos putative_mirtrons_set.csv --modelpath model")
 
 def process_argv():
-    requireds = ["canonical", "mirtrons", "modelpath"]
+    requireds = ["neg", "pos", "modelpath"]
 
     try:
         longopts = [ opt + "=" for opt in requireds ]
@@ -124,10 +124,10 @@ def process_argv():
     # parse the options
     r = { 'verbose': 1 }
     for op, value in opts:
-        if op in ("--canonical"):
-            r['canonical'] = value
-        elif op in ("--mirtrons"):
-            r['mirtrons'] = value
+        if op in ("--neg"):
+            r['neg'] = value
+        elif op in ("--pos"):
+            r['pos'] = value
         elif op in ("--modelpath"):
             r['modelpath'] = value
         elif op in ("--verbose"):
@@ -157,12 +157,12 @@ def main(opts):
     # fix random seed for reproducibility
     # numpy.random.seed(42)
 
-    FILE_PATH = opts["canonical"] # "miRBase_set.csv"
-    FILE_PATH_PUTATIVE = opts["mirtrons"] # "putative_mirtrons_set.csv"
+    FILE_PATH = opts["neg"] # "miRBase_set.csv"
+    FILE_PATH_PUTATIVE = opts["pos"] # "putative_mirtrons_set.csv"
 
     if opts['verbose'] == 1:
-        print(f"canonical={FILE_PATH}")
-        print(f"mirtrons={FILE_PATH_PUTATIVE}")
+        print(f"neg={FILE_PATH}")
+        print(f"pos={FILE_PATH_PUTATIVE}")
         print("output=%s" % opts["modelpath"])
 
     all_data_array = read_data(FILE_PATH,FILE_PATH_PUTATIVE)
@@ -191,7 +191,7 @@ def main(opts):
 if __name__ == "__main__":
     # This file contains adaptations for automated execution
     # Example:
-    # python model_chiquitto.py --canonical miRBase_set.csv --mirtrons putative_mirtrons_set.csv --modelpath chiquitto
+    # python model_chiquitto.py --neg miRBase_set.csv --pos putative_mirtrons_set.csv --modelpath chiquitto
 
     opts = process_argv()
     main(opts)
