@@ -26,6 +26,7 @@ conda install -n miRNAClassification -c anaconda -y numpy
 conda install -n miRNAClassification -c conda-forge -y keras
 conda install -n miRNAClassification -c anaconda -y tensorflow
 conda install -n miRNAClassification -c conda-forge -y scikit-learn
+conda install -n miRNAClassification h5py
 ```
 
 Install `keras-gpu` if you have a GPU.
